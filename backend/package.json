@@ -8,7 +8,7 @@
     "queue": "nodemon src/queue.js",
     "debug": "node --inspect -r sucrase/register src/server.js",
     "pretest": "set NODE_ENV=test && sequelize db:migrate",
-    "test": "jest",
+    "test": "set NODE_ENV=test && jest --runInBand",
     "posttest": "set NODE_ENV=test && sequelize db:migrate:undo:all"
   },
   "dependencies": {

@@ -7,23 +7,26 @@ class SessionController {
   async store(req, res) {
     const { email, password } = req.body;
 
-    const user = await CreateSessionService.run({
-      email,
-      password,
-    });
-
-    const { id, name } = user;
-
-    return res.json({
-      user: {
-        id,
-        name,
+    try {
+      const user = await CreateSessionService.run({
         email,
-      },
-      token: jwt.sign({ id }, auth.secret, {
-        expiresIn: auth.expiresIn,
-      }),
-    });
+        password,
+      });
+      const { id, name } = user;
+
+      return res.json({
+        user: {
+          id,
+          name,
+          email,
+        },
+        token: jwt.sign({ id }, auth.secret, {
+          expiresIn: auth.expiresIn,
+        }),
+      });
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
   }
 }
 

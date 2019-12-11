@@ -10,9 +10,8 @@ class UpdateStudentService {
 
     await student.update(newStudent);
 
-    const { id, name, email, age, weight, height } = await Student.findByPk(
-      studentId
-    );
+    const { id, name, email, age, weight, height } = student;
+
     return {
       id,
       name,

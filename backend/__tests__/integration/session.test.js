@@ -1,6 +1,8 @@
 import request from 'supertest';
 import app from '../../src/app';
 
+import getAuthorizationToken from '../util/authorization';
+
 describe('Session', () => {
   it('Admin must be able to authenticate', async () => {
     const response = await request(app)
@@ -43,5 +45,22 @@ describe('Session', () => {
       });
 
     expect(response.status).toBe(400);
+  });
+
+  it('json web token is required for all admin requests', async () => {
+    const response = await request(app).get('/plans');
+
+    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty('error');
+  });
+
+  it('json web token should be valid', async () => {
+    const token = await getAuthorizationToken();
+    const response = await request(app)
+      .get('/plans')
+      .set('Authorization', `Bearer ${token}fdsa`);
+
+    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty('error');
   });
 });

@@ -4,6 +4,7 @@ import CreateStudentService from '../services/student/CreateStudentService';
 import UpdateStudentService from '../services/student/UpdateStudentService';
 import Student from '../Models/Student';
 import capitalize from '../utils/capitalize';
+import DeleteStudentService from '../services/student/DeleteStudentService';
 
 class StudentController {
   async index(req, res) {
@@ -37,6 +38,18 @@ class StudentController {
       });
 
       return res.json(student);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+
+  async delete(req, res) {
+    try {
+      await DeleteStudentService.run({
+        registrationId: req.params.id,
+      });
+
+      return res.status(200).json({ success: true });
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }

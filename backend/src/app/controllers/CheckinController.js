@@ -20,12 +20,7 @@ class CheckinController {
       ],
     });
 
-    return res.json(
-      checkins.map(item => ({
-        ...item,
-        student: item.student.name,
-      }))
-    );
+    return res.json(checkins);
   }
 
   async store(req, res) {

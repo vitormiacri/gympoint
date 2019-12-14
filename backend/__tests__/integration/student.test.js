@@ -95,4 +95,45 @@ describe('Student', () => {
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty('error');
   });
+
+  it('should be return all students', async () => {
+    const token = await getAuthorizationToken();
+    const response = await request(app)
+      .get(`/students`)
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response.status).toBe(200);
+    expect(response.body).toBeInstanceOf(Object);
+  });
+
+  it('must be able to delete a student', async () => {
+    const student = await factory.create('Student');
+    const token = await getAuthorizationToken();
+    const response = await request(app)
+      .delete(`/students/${student.id}`)
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response.status).toBe(200);
+  });
+
+  it('should be validate if student exists on delete', async () => {
+    const token = await getAuthorizationToken();
+    const response = await request(app)
+      .delete(`/students/99999`)
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('error');
+  });
+
+  it('should be filter students by name', async () => {
+    const token = await getAuthorizationToken();
+    const response = await request(app)
+      .get(`/students`)
+      .query({ name: 'vitor' })
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response.status).toBe(200);
+    expect(response.body).toBeInstanceOf(Object);
+  });
 });

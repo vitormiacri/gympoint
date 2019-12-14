@@ -5,7 +5,7 @@ class DeleteStudentService {
     const student = await Student.findByPk(studentId);
 
     if (!student) {
-      throw new Error('Matrícula não encontrada.');
+      throw new Error('Aluno não encontrado.');
     }
 
     await student.destroy();

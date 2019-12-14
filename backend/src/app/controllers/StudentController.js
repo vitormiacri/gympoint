@@ -2,9 +2,9 @@ import { Op } from 'sequelize';
 
 import CreateStudentService from '../services/student/CreateStudentService';
 import UpdateStudentService from '../services/student/UpdateStudentService';
+import DeleteStudentService from '../services/student/DeleteStudentService';
 import Student from '../Models/Student';
 import capitalize from '../utils/capitalize';
-import DeleteStudentService from '../services/student/DeleteStudentService';
 
 class StudentController {
   async index(req, res) {
@@ -46,7 +46,7 @@ class StudentController {
   async delete(req, res) {
     try {
       await DeleteStudentService.run({
-        registrationId: req.params.id,
+        studentId: req.params.id,
       });
 
       return res.status(200).json({ success: true });

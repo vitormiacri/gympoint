@@ -1,13 +1,13 @@
-import Checkin from '../Models/Checkin';
+import HelpOrder from '../Models/HelpOrder';
 import Student from '../Models/Student';
 
 import CreateQuestionService from '../services/question/CreateQuestionService';
 
-class CheckinController {
+class QuestionController {
   async index(req, res) {
     const { student_id } = req.params;
 
-    const checkins = await Checkin.findAll({
+    const questions = await HelpOrder.findAll({
       where: {
         student_id,
       },
@@ -20,7 +20,7 @@ class CheckinController {
       ],
     });
 
-    return res.json(checkins);
+    return res.json(questions);
   }
 
   async store(req, res) {
@@ -28,6 +28,7 @@ class CheckinController {
       const { student_id } = req.params;
       const registration = await CreateQuestionService.run({
         student_id,
+        question: req.body.question,
       });
 
       return res.json(registration);
@@ -37,4 +38,4 @@ class CheckinController {
   }
 }
 
-export default new CheckinController();
+export default new QuestionController();

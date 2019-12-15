@@ -14,6 +14,12 @@ import validateRegistration from './app/validators/registration/RegistrationCrea
 
 import CheckinController from './app/controllers/CheckinController';
 
+import QuestionController from './app/controllers/QuestionController';
+import validateQuestion from './app/validators/question/QuestionCreate';
+
+import HelpOrderController from './app/controllers/HelpOrderController';
+import validateHelpOrder from './app/validators/helporder/HelpOrderUpdate';
+
 import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
@@ -23,7 +29,17 @@ routes.post('/sessions', validateSessionStore, SessionController.store);
 routes.post('/students/:student_id/checkin', CheckinController.store);
 routes.get('/students/:student_id/checkin', CheckinController.index);
 
+routes.get('/questions/:student_id', QuestionController.index);
+routes.post(
+  '/questions/:student_id',
+  validateQuestion,
+  QuestionController.store
+);
+
 routes.use(authMiddleware);
+
+routes.get('/help-orders', HelpOrderController.index);
+routes.put('/help-orders/:id', validateHelpOrder, HelpOrderController.update);
 
 routes.post('/students', validateStudent, StudentController.store);
 routes.put('/students/:id', validateStudent, StudentController.update);

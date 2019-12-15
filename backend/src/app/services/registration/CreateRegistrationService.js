@@ -48,7 +48,7 @@ class CreateRegistrationService {
         {
           model: Student,
           as: 'student',
-          attributes: ['name'],
+          attributes: ['name', 'email'],
         },
         {
           model: Plan,

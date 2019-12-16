@@ -1,7 +1,7 @@
 import Checkin from '../Models/Checkin';
 import Student from '../Models/Student';
 
-import CreateQuestionService from '../services/question/CreateQuestionService';
+import CreateCheckinService from '../services/checkin/CreateCheckinService';
 
 class CheckinController {
   async index(req, res) {
@@ -26,7 +26,7 @@ class CheckinController {
   async store(req, res) {
     try {
       const { student_id } = req.params;
-      const registration = await CreateQuestionService.run({
+      const registration = await CreateCheckinService.run({
         student_id,
       });
 

@@ -7,11 +7,11 @@ class CreateSessionService {
     });
 
     if (!user) {
-      throw new Error('User not found');
+      throw new Error('Usuário não encontrado');
     }
 
     if (!(await user.checkPassword(password))) {
-      throw new Error('Password does not match');
+      throw new Error('E-mail ou senha não confere.');
     }
 
     return user;

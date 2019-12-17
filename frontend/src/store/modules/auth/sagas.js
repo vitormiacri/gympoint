@@ -15,14 +15,14 @@ export function* signIn({ payload }) {
       password,
     });
 
-    const { user, token } = response.body;
+    const { user, token } = response.data;
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
 
     toast.success('Login efetuado com sucesso!');
-    history.push('/alunos');
+    history.push('/students');
   } catch (err) {
     toast.error(`Erro: ${err.response.data.error}`);
     yield put(signFailure());

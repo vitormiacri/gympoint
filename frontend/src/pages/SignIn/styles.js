@@ -39,6 +39,13 @@ export const Container = styled.div`
       font-size: 16px;
     }
 
+    span {
+      color: #fb6f91;
+      align-self: flex-start;
+      margin: 0 0 10px;
+      font-weight: bold;
+    }
+
     button {
       width: 100%;
       height: 45px;

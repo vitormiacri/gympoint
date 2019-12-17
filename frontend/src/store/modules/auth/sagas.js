@@ -24,8 +24,7 @@ export function* signIn({ payload }) {
     toast.success('Login efetuado com sucesso!');
     history.push('/alunos');
   } catch (err) {
-    console.tron.log(err.response);
-    toast.error(`Erro na Autenticaç: ${err.response}`);
+    toast.error(`Erro: ${err.response.data.error}`);
     yield put(signFailure());
   }
 }

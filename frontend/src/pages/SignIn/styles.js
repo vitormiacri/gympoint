@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   padding: 3rem 0;
 
-  border-radius: 5px;
+  border-radius: 4px;
   box-shadow: 0px 0px 8px 0px rgba(151, 151, 151, 0.7);
 
   form {
@@ -33,7 +33,7 @@ export const Container = styled.div`
       margin-bottom: 1rem;
       margin-top: 0.5rem;
       color: #999;
-      border-radius: 5px;
+      border-radius: 4px;
       border: 1px solid #ddd;
       padding-left: 1rem;
       font-size: 16px;
@@ -51,7 +51,7 @@ export const Container = styled.div`
       height: 45px;
       background: #ee4d64;
       border: none;
-      border-radius: 5px;
+      border-radius: 4px;
       color: #fff;
       font-size: 16px;
       font-weight: bold;

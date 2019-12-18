@@ -2,15 +2,18 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-
-  height: 64px;
   background: #fff;
-
   border-bottom: 1px solid #ddd;
+`;
 
+export const Content = styled.div`
+  width: 100%;
+  max-width: 1440px;
+  height: 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
 
   padding: 0.3rem 3rem;
 `;

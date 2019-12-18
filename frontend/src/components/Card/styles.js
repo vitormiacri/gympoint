@@ -7,4 +7,9 @@ export const Container = styled.div`
 
   padding: 1.5rem;
   margin-top: 1.5rem;
+
+  .loading {
+    margin: 3rem;
+    text-align: center;
+  }
 `;

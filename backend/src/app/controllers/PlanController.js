@@ -5,7 +5,9 @@ import DeletePlanService from '../services/plan/DeletePlanService';
 
 class PlanController {
   async index(req, res) {
-    const plans = await Plan.findAll();
+    const plans = await Plan.findAll({
+      order: ['id'],
+    });
 
     return res.json(plans);
   }

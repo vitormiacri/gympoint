@@ -6,12 +6,12 @@ export const InputIcon = styled.div`
   position: relative;
 
   input {
-    width: 100%;
     height: 36px;
 
     border: 1px solid #ddd;
     border-radius: 4px;
     padding-left: 40px;
+    margin-left: 1rem;
 
     color: #999;
     font-size: 0.925rem;
@@ -21,7 +21,7 @@ export const InputIcon = styled.div`
     position: absolute;
     left: 0;
     top: 0;
-    padding: 9px 12px;
+    padding: 9px 28px;
   }
 `;
 

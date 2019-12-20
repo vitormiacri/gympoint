@@ -30,8 +30,6 @@ export const Container = styled.div`
 
       border-radius: 4px;
 
-      margin-right: 1rem;
-
       svg {
         margin-right: 0.3rem;
       }

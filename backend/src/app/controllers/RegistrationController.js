@@ -15,12 +15,12 @@ class RegistrationController {
         {
           model: Student,
           as: 'student',
-          attributes: ['name'],
+          attributes: ['name', 'id'],
         },
         {
           model: Plan,
           as: 'plan',
-          attributes: ['title'],
+          attributes: ['title', 'id', 'price', 'duration'],
         },
       ],
       attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
@@ -31,8 +31,8 @@ class RegistrationController {
         id: item.id,
         price: item.price,
         active: item.active,
-        plan: item.plan.title,
-        student: item.student.name,
+        plan: item.plan,
+        student: item.student,
         start_date: format(item.start_date, "dd 'de' MMMM 'de' yyyy", {
           locale: pt,
         }),

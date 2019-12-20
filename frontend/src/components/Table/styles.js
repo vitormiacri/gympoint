@@ -8,7 +8,7 @@ export const Container = styled.div`
     border-spacing: 0;
 
     tbody {
-      height: 88%;
+      height: 100%;
       overflow-y: auto;
     }
 
@@ -16,7 +16,7 @@ export const Container = styled.div`
       width: 100%;
       background: #fff;
       color: #444;
-      text-align: left;
+      text-align: center;
       font-size: 1.2rem;
       font-weight: bold;
 
@@ -53,10 +53,13 @@ export const Container = styled.div`
         border-bottom: 1px solid #eee;
 
         td {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
           width: 20%;
           padding: 0.5rem;
           color: #666;
-          text-align: left;
 
           &:first-of-type {
             max-width: 35%;
@@ -64,10 +67,6 @@ export const Container = styled.div`
           &:last-of-type {
             max-width: 10%;
           }
-
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
 
           button {
             font-size: 0.925rem;

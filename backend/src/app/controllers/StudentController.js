@@ -8,11 +8,14 @@ import capitalize from '../utils/capitalize';
 
 class StudentController {
   async index(req, res) {
-    const { name } = req.query;
+    const { name, page = 1, perPage = 5 } = req.query;
     const where = {};
     if (name) where.name = { [Op.substring]: capitalize(name) };
     const students = await Student.findAll({
       where,
+      limit: perPage,
+      offset: (page - 1) * perPage,
+      order: ['name'],
     });
 
     return res.json(students);

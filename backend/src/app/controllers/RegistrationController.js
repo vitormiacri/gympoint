@@ -7,6 +7,8 @@ import Plan from '../Models/Plan';
 
 class RegistrationController {
   async index(req, res) {
+    const { page = 1, perPage = 5 } = req.query;
+
     const registrations = await Registration.findAll({
       include: [
         {
@@ -20,6 +22,8 @@ class RegistrationController {
           attributes: ['title', 'id', 'price', 'duration'],
         },
       ],
+      limit: perPage,
+      offset: (page - 1) * perPage,
       attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
     });
 

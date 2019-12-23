@@ -5,7 +5,11 @@ import DeletePlanService from '../services/plan/DeletePlanService';
 
 class PlanController {
   async index(req, res) {
+    const { page = 1, perPage = 5 } = req.query;
+
     const plans = await Plan.findAll({
+      limit: perPage,
+      offset: (page - 1) * perPage,
       order: ['id'],
     });
 

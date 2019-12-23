@@ -5,6 +5,8 @@ import CreateHelpOrderService from '../services/helporder/CreateHelpOrderService
 
 class HelpOrderController {
   async index(req, res) {
+    const { page = 1, perPage = 5 } = req.query;
+
     const helpOrders = await HelpOrder.findAll({
       where: {
         answer_at: null,
@@ -16,6 +18,9 @@ class HelpOrderController {
           attributes: ['id', 'name'],
         },
       ],
+      order: ['created_at'],
+      limit: perPage,
+      offset: (page - 1) * perPage,
     });
 
     return res.json(helpOrders);

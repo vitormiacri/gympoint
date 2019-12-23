@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ptBR from 'date-fns/locale/pt-BR';
 
-import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
 
 import 'react-datepicker/dist/react-datepicker.css';

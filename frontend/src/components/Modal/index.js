@@ -1,9 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container } from './styles';
+import { Container, ModalBody } from './styles';
 
-export default function Modal({ show, handleClose, handleConfirm, children }) {
+export default function Modal({
+  show,
+  showTitle,
+  showFooter,
+  handleClose,
+  handleConfirm,
+  children,
+}) {
   function handleClick(e) {
     const modal = document.getElementById('modal');
     if (e === modal) {
@@ -13,26 +20,30 @@ export default function Modal({ show, handleClose, handleConfirm, children }) {
 
   return (
     <Container show={show} id="modal" onClick={e => handleClick(e.target)}>
-      <div>
-        <p>AVISO</p>
+      <ModalBody>
+        {showTitle ? <p>AVISO</p> : null}
         {children}
-        <footer>
-          <button type="button" onClick={handleClose}>
-            FECHAR
-          </button>
-          {handleConfirm ? (
-            <button type="button" onClick={handleConfirm}>
-              CONFIRMAR
+        {showFooter ? (
+          <footer>
+            <button type="button" onClick={handleClose}>
+              FECHAR
             </button>
-          ) : null}
-        </footer>
-      </div>
+            {handleConfirm ? (
+              <button type="button" onClick={handleConfirm}>
+                CONFIRMAR
+              </button>
+            ) : null}
+          </footer>
+        ) : null}
+      </ModalBody>
     </Container>
   );
 }
 
-Modal.Prototypes = {
+Modal.propTypes = {
   show: PropTypes.bool,
+  showTitle: PropTypes.bool,
+  showFooter: PropTypes.bool,
   handleClose: PropTypes.func.isRequired,
   handleConfirm: PropTypes.func,
   children: PropTypes.node.isRequired,
@@ -40,5 +51,7 @@ Modal.Prototypes = {
 
 Modal.defaultProps = {
   show: false,
+  showTitle: true,
+  showFooter: true,
   handleConfirm: null,
 };

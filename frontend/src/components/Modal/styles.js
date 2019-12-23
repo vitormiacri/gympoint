@@ -11,61 +11,61 @@ export const Container = styled.div`
   background: rgba(0, 0, 0, 0.7);
 
   display: ${props => (props.show ? 'block' : 'none')};
+`;
 
-  div {
-    position: fixed;
-    top: 30%;
-    left: 50%;
-    z-index: 5;
-    background: #fff;
-    padding: 2rem 2rem 1rem;
-    min-width: 50%;
-    border-radius: 4px;
+export const ModalBody = styled.div`
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  z-index: 5;
+  background: #fff;
+  padding: 2rem 2rem 1rem;
+  min-width: 20%;
+  border-radius: 4px;
+  text-align: center;
+
+  font-size: 2rem;
+
+  transform: translate(-50%, 0);
+
+  p {
     text-align: center;
-
+    font-weight: bold;
     font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 
-    transform: translate(-50%, 0);
+  footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
 
-    p {
-      text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 0;
+
+    button {
+      height: 45px;
+      background: #ee4d64;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 16px;
       font-weight: bold;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
+      line-height: 1.9;
+      padding: 0.5rem 1rem;
 
-    footer {
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid #eee;
+      &:hover {
+        background: ${darken(0.03, '#ee4d64')};
+      }
 
-      display: flex;
-      justify-content: flex-end;
-      flex-grow: 0;
-
-      button {
-        height: 45px;
-        background: #ee4d64;
-        border: none;
-        border-radius: 4px;
-        color: #fff;
-        font-size: 16px;
-        font-weight: bold;
-        line-height: 1.9;
-        padding: 0.5rem 1rem;
+      &:first-of-type {
+        background: #eee;
+        color: #999;
+        margin-right: 1rem;
 
         &:hover {
-          background: ${darken(0.03, '#ee4d64')};
-        }
-
-        &:first-of-type {
-          background: #eee;
-          color: #999;
-          margin-right: 1rem;
-
-          &:hover {
-            background: ${darken(0.03, '#EEE')};
-          }
+          background: ${darken(0.03, '#EEE')};
         }
       }
     }

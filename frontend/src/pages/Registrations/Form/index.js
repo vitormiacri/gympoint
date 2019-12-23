@@ -127,9 +127,9 @@ export default function Form({ history }) {
         );
       } else {
         setEndDate('');
-        setTotalPrice(formatPrice(total));
       }
     }
+    setTotalPrice(formatPrice(total));
   }
 
   const filterStudents = inputValue => {
@@ -179,6 +179,7 @@ export default function Form({ history }) {
                 defaultOptions
                 cacheOptions
                 defaultInputValue={student.name}
+                placeholder="Buscar aluno"
                 loadOptions={promiseOptions}
                 onChange={option => setFieldValue('student', option.value)}
               />

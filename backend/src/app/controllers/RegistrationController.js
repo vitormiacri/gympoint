@@ -1,6 +1,3 @@
-import { format } from 'date-fns';
-import pt from 'date-fns/locale/pt-BR';
-
 import Registration from '../Models/Registration';
 import CreateRegistrationService from '../services/registration/CreateRegistrationService';
 import UpdateRegistrationService from '../services/registration/UpdateRegistrationService';
@@ -33,12 +30,8 @@ class RegistrationController {
         active: item.active,
         plan: item.plan,
         student: item.student,
-        start_date: format(item.start_date, "dd 'de' MMMM 'de' yyyy", {
-          locale: pt,
-        }),
-        end_date: format(item.end_date, "dd 'de' MMMM 'de' yyyy", {
-          locale: pt,
-        }),
+        start_date: item.start_date,
+        end_date: item.end_date,
       }))
     );
   }

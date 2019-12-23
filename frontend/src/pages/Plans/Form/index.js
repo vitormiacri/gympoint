@@ -121,7 +121,7 @@ export default function Form({ history }) {
                     name="totalPrice"
                     value={totalPrice}
                     disabled
-                    onBlur={handleOnBlur({ duration, price, totalPrice })}
+                    onBlur={handleOnBlur({ duration, price })}
                   />
                   {errors.totalPrice ? <p>{errors.totalPrice}</p> : null}
                 </div>

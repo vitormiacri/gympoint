@@ -7,6 +7,8 @@ import Students from '../pages/Students';
 import StudentsForm from '../pages/Students/Form';
 import Plans from '../pages/Plans';
 import PlansForm from '../pages/Plans/Form';
+import Registrations from '../pages/Registrations';
+import RegistrationsForm from '../pages/Registrations/Form';
 
 export default function Routes() {
   return (
@@ -20,6 +22,20 @@ export default function Routes() {
       <Route path="/plans" exact component={Plans} isPrivate />
       <Route path="/plans/new" exact component={PlansForm} isPrivate />
       <Route path="/plans/edit" exact component={PlansForm} isPrivate />
+
+      <Route path="/registrations" exact component={Registrations} isPrivate />
+      <Route
+        path="/registrations/new"
+        exact
+        component={RegistrationsForm}
+        isPrivate
+      />
+      <Route
+        path="/registrations/edit"
+        exact
+        component={RegistrationsForm}
+        isPrivate
+      />
     </Switch>
   );
 }

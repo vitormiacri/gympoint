@@ -29,11 +29,11 @@ export const Container = styled.div`
           padding: 1rem 0.5rem;
 
           &:first-of-type {
-            max-width: 35%;
+            max-width: 30%;
           }
 
           &:last-of-type {
-            max-width: 10%;
+            max-width: 20%;
           }
         }
       }
@@ -62,21 +62,21 @@ export const Container = styled.div`
           color: #666;
 
           &:first-of-type {
-            max-width: 35%;
+            max-width: 30%;
           }
           &:last-of-type {
-            max-width: 10%;
+            max-width: 20%;
           }
 
           button {
             font-size: 0.925rem;
             background: transparent;
             border: none;
-            color: #4d85ee;
+            color: #de3b3b;
+            margin-left: 1.2rem;
 
-            &:last-of-type {
-              color: #de3b3b;
-              margin-left: 1.2rem;
+            &:first-of-type {
+              color: #4d85ee;
             }
           }
         }

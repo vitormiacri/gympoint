@@ -9,7 +9,7 @@ class RegistrationController {
   async index(req, res) {
     const { page = 1, perPage = 5 } = req.query;
 
-    const registrations = await Registration.findAll({
+    const registrations = await Registration.findAndCountAll({
       include: [
         {
           model: Student,

@@ -7,7 +7,7 @@ class HelpOrderController {
   async index(req, res) {
     const { page = 1, perPage = 5 } = req.query;
 
-    const helpOrders = await HelpOrder.findAll({
+    const helpOrders = await HelpOrder.findAndCountAll({
       where: {
         answer_at: null,
       },

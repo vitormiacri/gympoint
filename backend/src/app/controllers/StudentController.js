@@ -11,7 +11,7 @@ class StudentController {
     const { name, page = 1, perPage = 5 } = req.query;
     const where = {};
     if (name) where.name = { [Op.substring]: capitalize(name) };
-    const students = await Student.findAll({
+    const students = await Student.findAndCountAll({
       where,
       limit: perPage,
       offset: (page - 1) * perPage,

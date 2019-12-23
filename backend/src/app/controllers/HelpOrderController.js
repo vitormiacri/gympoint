@@ -13,7 +13,7 @@ class HelpOrderController {
         {
           model: Student,
           as: 'student',
-          attributes: ['name'],
+          attributes: ['id', 'name'],
         },
       ],
     });

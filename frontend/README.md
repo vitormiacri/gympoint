@@ -1,6 +1,6 @@
 # GYMPOINT
 
-Página desenvolvida em ReactJs para simular o valor de uma ligação para determinados DDDs, respeitando as seguintes regras:
+Página desenvolvida em ReactJs para o gerenciamento de alunos, planos, matrículas e pedidos de ajuda de academias:
 
 ![gympointweb](https://github.com/vitormiacri/gympoint/blob/master/frontend/gympoint.gif)
 

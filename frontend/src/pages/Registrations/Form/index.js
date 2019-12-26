@@ -104,6 +104,7 @@ export default function Form({ history }) {
     let duration = 0;
 
     if (plans) {
+      // eslint-disable-next-line eqeqeq
       const planSelected = plans.find(item => planId == item.id);
       if (planSelected) {
         price = planSelected.price;

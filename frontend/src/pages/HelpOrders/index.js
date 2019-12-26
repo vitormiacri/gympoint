@@ -112,7 +112,7 @@ export default function HelpOrders({ history }) {
             </tbody>
           </Table>
         ) : (
-          <Empty>Nenhum plano encontrado</Empty>
+          <Empty>Nenhum pedido de ajuda encontrado</Empty>
         )}
       </Card>
       <Modal

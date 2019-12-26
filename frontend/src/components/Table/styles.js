@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
@@ -64,6 +63,7 @@ export const Container = styled.div`
 
           &:first-of-type {
             max-width: 30%;
+            white-space: nowrap;
           }
           &:last-of-type {
             max-width: 20%;

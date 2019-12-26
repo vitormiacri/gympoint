@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
@@ -18,14 +19,24 @@ export default function Plans({ history }) {
   const [showModal, setShowModal] = useState(false);
   const [planId, setPlanId] = useState(0);
 
+  const [page, setPage] = useState(1);
+  const [totalRows, setTotalRows] = useState(0);
+
+  const perPage = 5;
+
   async function loadPlans() {
     try {
       setLoading(true);
 
-      const response = await api.get('/plans');
+      const response = await api.get('/plans', {
+        params: {
+          page,
+          perPage,
+        },
+      });
 
       setPlans(
-        response.data.map(item => ({
+        response.data.rows.map(item => ({
           ...item,
           priceFormatted: formatPrice(item.price),
           durationFormatted:
@@ -33,6 +44,7 @@ export default function Plans({ history }) {
           totalPrice: item.duration * item.price,
         }))
       );
+      setTotalRows(response.data.count);
     } catch (err) {
       toast.error(`Erro: ${err.response.data.error}`);
     } finally {
@@ -43,6 +55,10 @@ export default function Plans({ history }) {
   useEffect(() => {
     loadPlans();
   }, []);
+
+  useEffect(() => {
+    loadPlans();
+  }, [page]);
 
   function handleEdit(plan) {
     history.push('/plans/edit', plan);
@@ -63,6 +79,11 @@ export default function Plans({ history }) {
       toast.error(`Erro: ${err.response.data.error}`);
     }
   }
+
+  function handlePagination(type) {
+    setPage(type === 'back' ? page - 1 : page + 1);
+  }
+
   return (
     <>
       <Navigation title="Gerenciando planos">
@@ -72,7 +93,12 @@ export default function Plans({ history }) {
       </Navigation>
       <Card loading={loading}>
         {plans.length > 0 ? (
-          <Table>
+          <Table
+            page={page}
+            perPage={perPage}
+            handlePagination={handlePagination}
+            totalRows={totalRows}
+          >
             <thead>
               <tr>
                 <th>TÍTULO</th>

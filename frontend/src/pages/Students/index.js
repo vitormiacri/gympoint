@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -18,6 +19,11 @@ export default function Students({ history }) {
   const [showModal, setShowModal] = useState(false);
   const [studentId, setStudentId] = useState(0);
 
+  const [page, setPage] = useState(1);
+  const [totalRows, setTotalRows] = useState(0);
+
+  const perPage = 5;
+
   async function loadStudents(name) {
     try {
       setLoading(true);
@@ -26,13 +32,18 @@ export default function Students({ history }) {
         response = await api.get('/students', {
           params: {
             name,
+            page,
+            perPage,
           },
         });
       } else {
-        response = await api.get('/students');
+        response = await api.get('/students', {
+          params: { page, perPage },
+        });
       }
 
-      setStudents(response.data);
+      setStudents(response.data.rows);
+      setTotalRows(response.data.count);
     } catch (err) {
       toast.error(`Erro: ${err.response.data.error}`);
     } finally {
@@ -47,6 +58,10 @@ export default function Students({ history }) {
   useEffect(() => {
     loadStudents(studentName);
   }, [studentName]);
+
+  useEffect(() => {
+    loadStudents(studentName);
+  }, [page]);
 
   function handleEdit(student) {
     history.push('/students/edit', student);
@@ -66,6 +81,10 @@ export default function Students({ history }) {
     } catch (err) {
       toast.error(`Erro: ${err.response.data.error}`);
     }
+  }
+
+  function handlePagination(type) {
+    setPage(type === 'back' ? page - 1 : page + 1);
   }
 
   return (
@@ -88,7 +107,12 @@ export default function Students({ history }) {
       </Navigation>
       <Card loading={loading}>
         {students.length > 0 ? (
-          <Table>
+          <Table
+            page={page}
+            perPage={perPage}
+            handlePagination={handlePagination}
+            totalRows={totalRows}
+          >
             <thead>
               <tr>
                 <th>NOME</th>

@@ -9,7 +9,7 @@ Para executar o **servidor da api**, siga os passos abaixo:
 - Clone este repositório:
 
 ```
-git clone https://github.com/vitormiacri/gympoint-backend gympoint
+git clone https://github.com/vitormiacri/gympoint gympoint
 ```
 
 - Acesse a pasta do projeto `gympoint/backend`:

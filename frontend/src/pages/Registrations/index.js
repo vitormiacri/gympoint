@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
@@ -18,14 +19,24 @@ export default function Registrations({ history }) {
   const [showModal, setShowModal] = useState(false);
   const [registrationId, setRegistrationId] = useState(0);
 
+  const [page, setPage] = useState(1);
+  const [totalRows, setTotalRows] = useState(0);
+
+  const perPage = 5;
+
   async function loadRegistrations() {
     try {
       setLoading(true);
 
-      const response = await api.get('/registrations');
+      const response = await api.get('/registrations', {
+        params: {
+          page,
+          perPage,
+        },
+      });
 
       setRegistrations(
-        response.data.map(item => ({
+        response.data.rows.map(item => ({
           ...item,
           start_dateFormatted: format(
             parseISO(item.start_date),
@@ -49,7 +60,9 @@ export default function Registrations({ history }) {
           ),
         }))
       );
+      setTotalRows(response.data.count);
     } catch (err) {
+      console.tron.log(err.response.data);
       toast.error(`Erro: ${err.response.data.error}`);
     } finally {
       setLoading(false);
@@ -59,6 +72,10 @@ export default function Registrations({ history }) {
   useEffect(() => {
     loadRegistrations();
   }, []);
+
+  useEffect(() => {
+    loadRegistrations();
+  }, [page]);
 
   function handleEdit(registration) {
     const state = {
@@ -84,6 +101,11 @@ export default function Registrations({ history }) {
       toast.error(`Erro: ${err.response.data.error}`);
     }
   }
+
+  function handlePagination(type) {
+    setPage(type === 'back' ? page - 1 : page + 1);
+  }
+
   return (
     <>
       <Navigation title="Gerenciando matrículas">
@@ -93,7 +115,12 @@ export default function Registrations({ history }) {
       </Navigation>
       <Card loading={loading}>
         {registrations.length > 0 ? (
-          <Table>
+          <Table
+            page={page}
+            perPage={perPage}
+            handlePagination={handlePagination}
+            totalRows={totalRows}
+          >
             <thead>
               <tr>
                 <th>ALUNO</th>

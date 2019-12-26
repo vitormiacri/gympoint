@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import pt from 'date-fns/locale/pt-BR';
@@ -36,10 +36,15 @@ export default function Form({ history }) {
   useEffect(() => {
     async function loadPlans() {
       try {
-        const response = await api.get('/plans');
+        const response = await api.get('/plans', {
+          params: {
+            page: 1,
+            perPage: 99999,
+          },
+        });
 
         setPlans(
-          response.data.map(item => ({
+          response.data.rows.map(item => ({
             ...item,
             totalPrice: item.duration * item.price,
           }))
@@ -57,9 +62,11 @@ export default function Form({ history }) {
       const response = await api.get('/students', {
         params: {
           name,
+          page: 1,
+          perPage: 99999,
         },
       });
-      return response.data.map(item => ({
+      return response.data.rows.map(item => ({
         value: item.id,
         label: item.name,
       }));

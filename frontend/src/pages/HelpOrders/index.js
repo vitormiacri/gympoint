@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Formik, Field } from 'formik';
@@ -18,6 +19,11 @@ export default function HelpOrders({ history }) {
   const [helpOrderId, setHelpOrderId] = useState(0);
   const [question, setQuestion] = useState('');
 
+  const [page, setPage] = useState(1);
+  const [totalRows, setTotalRows] = useState(0);
+
+  const perPage = 5;
+
   async function loadHelpOrders() {
     try {
       setLoading(true);
@@ -25,7 +31,7 @@ export default function HelpOrders({ history }) {
       const response = await api.get('/help-orders');
 
       setHelpOrders(
-        response.data.map(item => ({
+        response.data.rows.map(item => ({
           ...item,
           priceFormatted: formatPrice(item.price),
           durationFormatted:
@@ -33,6 +39,7 @@ export default function HelpOrders({ history }) {
           totalPrice: item.duration * item.price,
         }))
       );
+      setTotalRows(response.data.count);
     } catch (err) {
       toast.error(`Erro: ${err.response.data.error}`);
     } finally {
@@ -43,6 +50,10 @@ export default function HelpOrders({ history }) {
   useEffect(() => {
     loadHelpOrders();
   }, []);
+
+  useEffect(() => {
+    loadHelpOrders();
+  }, [page]);
 
   function confirmAnswer(id) {
     setHelpOrderId(id);
@@ -63,12 +74,21 @@ export default function HelpOrders({ history }) {
     }
   }
 
+  function handlePagination(type) {
+    setPage(type === 'back' ? page - 1 : page + 1);
+  }
+
   return (
     <Container>
       <Navigation title="Pedidos de auxílio" />
       <Card loading={loading}>
         {helpOrders.length > 0 ? (
-          <Table>
+          <Table
+            page={page}
+            perPage={perPage}
+            handlePagination={handlePagination}
+            totalRows={totalRows}
+          >
             <thead>
               <tr>
                 <th>ALUNO</th>

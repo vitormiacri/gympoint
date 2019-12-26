@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
@@ -82,5 +83,45 @@ export const Container = styled.div`
         }
       }
     }
+  }
+`;
+
+export const Pagination = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 1rem;
+
+  button {
+    font-size: 0.925rem;
+    background: transparent;
+    padding: 0.8rem;
+    color: #999;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding-left: 1rem;
+    font-size: 16px;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:hover {
+      background: #de3b3b;
+      color: #fff;
+      border: 1px solid #de3b3b;
+    }
+  }
+
+  span {
+    width: 40px;
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    font-size: 16px;
+    border-radius: 50%;
+    color: #999;
+    text-align: center;
   }
 `;

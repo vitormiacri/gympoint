@@ -27,17 +27,7 @@ class RegistrationController {
       attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
     });
 
-    return res.json(
-      registrations.map(item => ({
-        id: item.id,
-        price: item.price,
-        active: item.active,
-        plan: item.plan,
-        student: item.student,
-        start_date: item.start_date,
-        end_date: item.end_date,
-      }))
-    );
+    return res.json(registrations);
   }
 
   async store(req, res) {

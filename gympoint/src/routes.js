@@ -39,9 +39,11 @@ export default (isSigned = false) =>
                 }
               ),
               navigationOptions: {
-                tabBarVisible: false,
+                tabBarVisible: true,
                 tabBarLabel: 'Pedir Ajuda',
-                tabBarIcon: <Icon name="live-help" size={20} color="#999" />,
+                tabBarIcon: ({ tintColor }) => (
+                  <Icon name="live-help" size={20} color={tintColor} />
+                ),
               },
             },
           },

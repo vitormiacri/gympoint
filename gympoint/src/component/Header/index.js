@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, TouchableOpacity, Text } from 'react-native';
 
 import { Container, LogoTitle } from './styles';
 import logo from '~/assets/logo.png';

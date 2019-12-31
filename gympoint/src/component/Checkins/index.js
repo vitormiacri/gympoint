@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { formatRelative, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
 
@@ -22,3 +23,8 @@ export default function Checkins({ checkin, index, totalRows }) {
     </Container>
   );
 }
+Checkins.propTypes = {
+  checkin: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  index: PropTypes.number.isRequired,
+  totalRows: PropTypes.number.isRequired,
+};

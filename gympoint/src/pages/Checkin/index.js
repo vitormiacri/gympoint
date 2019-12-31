@@ -30,7 +30,6 @@ function Checkin({ isFocused }) {
     if (isFocused) {
       loadCheckins();
     }
-    loadCheckins();
   }, [isFocused]);
 
   async function handleNewCheckin() {

@@ -1,8 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
+import { formatRelative, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import { Alert } from 'react-native';
+
 import { Container, QuestionButton, QuestionsList } from './styles';
 import Header from '~/component/Header';
 import api from '~/services/api';
@@ -18,7 +20,14 @@ export default function List({ navigation }) {
       setLoading(true);
       const response = await api.get(`questions/${studentId}`);
 
-      setQuestions(response.data);
+      setQuestions(
+        response.data.map(item => ({
+          ...item,
+          dateFormatted: formatRelative(parseISO(item.createdAt), new Date(), {
+            locale: pt,
+          }),
+        }))
+      );
     } catch (err) {
       Alert.alert('Erro', `${err.response.data.error}`);
     } finally {

@@ -1,8 +1,6 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { formatRelative, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt-BR';
 
 import {
   Container,
@@ -20,24 +18,15 @@ import logo from '~/assets/logo.png';
 
 export default function Show({ navigation }) {
   const question = navigation.getParam('question');
-  const dateFormatted = useMemo(() => {
-    return question.answer_at
-      ? formatRelative(parseISO(question.answer_at), new Date(), {
-          locale: pt,
-        })
-      : formatRelative(parseISO(question.createdAt), new Date(), {
-          locale: pt,
-        });
-  }, [question.answer_at, question.createdAt]);
 
   return (
     <Container>
       <Card>
         <Info>
           <Title>PERGUNTA</Title>
-          <QuestionText>{dateFormatted}</QuestionText>
+          <QuestionText>{question.question}</QuestionText>
         </Info>
-        <DateText>{question.question}</DateText>
+        <DateText>{question.dateFormatted}</DateText>
         <Answer>
           <Title>RESPOSTA</Title>
           <Text>{question.answer}</Text>

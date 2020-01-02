@@ -1,7 +1,5 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { formatRelative, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt-BR';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
@@ -14,16 +12,6 @@ import {
 } from './styles';
 
 export default function Questions({ question, handleOnPress }) {
-  const dateFormatted = useMemo(() => {
-    return question.answer_at
-      ? formatRelative(parseISO(question.answer_at), new Date(), {
-          locale: pt,
-        })
-      : formatRelative(parseISO(question.createdAt), new Date(), {
-          locale: pt,
-        });
-  }, [question.answer_at, question.createdAt]);
-
   return (
     <Container onPress={handleOnPress}>
       <Info accessible>
@@ -37,7 +25,7 @@ export default function Questions({ question, handleOnPress }) {
             {question.answer ? 'Respondido' : 'Sem resposta'}
           </AnsweredText>
         </Answered>
-        <DateText>{dateFormatted}</DateText>
+        <DateText>{question.dateFormatted}</DateText>
       </Info>
       <QuestionText>{question.question}</QuestionText>
     </Container>

@@ -70,3 +70,45 @@ yarn start
 ```
 
 Para mais detalhes sobre o frontend, clique [aqui](https://github.com/vitormiacri/gympoint/tree/master/frontend)
+
+### Mobile
+
+> Atenção! Para a construção do aplicativo mobile, foi utilizado React Native, somente testado na plataforma **Android**
+
+- Siga os passos abaixo para rodar a aplicação:
+
+  > Caso ainda não tenha configurado um ambiente android em sua máquina siga esse [tutorial](https://facebook.github.io/react-native/docs/getting-started)
+
+Para executar o **aplicativo mobile**, siga os passos abaixo:
+
+- Acesse a pasta do projeto mobile `gympoint` `/gympoint`:
+
+```
+cd gympoint
+```
+
+- Execute o comando abaixo para instalar as dependências:
+
+```
+npm install
+or
+yarn install
+```
+
+- Plug e/ou configure o seu emulador ou dispositivo;
+
+- Depois do ambiente com a SDK e o emulador ou dispotivo Android configurado plugado, instale a aplicação:
+
+```
+react-native run-android
+```
+
+- Agora é só rodar o comando:
+
+```
+npm run start
+or
+yarn start
+```
+
+Para mais detalhes sobre o aplicativo mobile, clique [aqui](https://github.com/vitormiacri/gympoint/tree/master/gympoint)

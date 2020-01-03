@@ -13,6 +13,7 @@ export const Container = styled.View`
 
 export const TInput = styled.TextInput.attrs({
   placeholderTextColor: '#999',
+  textAlignVertical: 'top',
 })`
   flex: 1;
   font-size: 16px;

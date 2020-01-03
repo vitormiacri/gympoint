@@ -2,15 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { formatRelative, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import pt from 'date-fns/locale/pt-BR';
 import { Alert } from 'react-native';
+import { withNavigationFocus } from 'react-navigation';
 
 import { Container, QuestionButton, QuestionsList } from './styles';
 import Header from '~/component/Header';
 import api from '~/services/api';
 import Questions from '~/component/Questions';
 
-export default function List({ navigation }) {
+function List({ navigation, isFocused }) {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const studentId = useSelector(state => state.student.studentId);
@@ -36,6 +37,9 @@ export default function List({ navigation }) {
   }
 
   useEffect(() => {
+    if (isFocused) {
+      loadQuestions();
+    }
     loadQuestions();
   }, []);
 
@@ -64,3 +68,5 @@ export default function List({ navigation }) {
 List.navigationOptions = ({ navigation }) => ({
   header: <Header navigation={navigation} />,
 });
+
+export default withNavigationFocus(List);

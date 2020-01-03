@@ -24,9 +24,9 @@ export default function Show({ navigation }) {
       <Card>
         <Info>
           <Title>PERGUNTA</Title>
-          <QuestionText>{question.question}</QuestionText>
+          <DateText>{question.dateFormatted}</DateText>
         </Info>
-        <DateText>{question.dateFormatted}</DateText>
+        <QuestionText>{question.question}</QuestionText>
         <Answer>
           <Title>RESPOSTA</Title>
           <Text>{question.answer}</Text>

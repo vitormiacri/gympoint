@@ -11,6 +11,7 @@ class QuestionController {
       where: {
         student_id,
       },
+      order: [['created_at', 'desc']],
       include: [
         {
           model: Student,
